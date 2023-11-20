@@ -11,14 +11,18 @@ namespace ReportManager
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var IdentityConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<IdentityContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(IdentityConnectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<IdentityContext>();
             builder.Services.AddControllersWithViews();
+
+            var MainConnectionString = builder.Configuration.GetConnectionString("MainConnection") ?? throw new InvalidOperationException("Connection string 'MainConnection' not found.");
+            builder.Services.AddDbContext<MainContext>(options =>
+                options.UseSqlServer(MainConnectionString));
 
             var app = builder.Build();
 
