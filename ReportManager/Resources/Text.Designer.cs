@@ -144,72 +144,72 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You have to select the category!.
         /// </summary>
-        internal static string TicketCatIdRequiredErrorMessage {
+        internal static string ReportCatIdRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TicketCatIdRequiredErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportCatIdRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Maximum length of description is 1000 signs!.
         /// </summary>
-        internal static string TicketDescMaxLengthErrorMessage {
+        internal static string ReportDescMaxLengthErrorMessage {
             get {
-                return ResourceManager.GetString("TicketDescMaxLengthErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportDescMaxLengthErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Minimal length of description is 50 signs!.
         /// </summary>
-        internal static string TicketDescMinLengthErrorMessage {
+        internal static string ReportDescMinLengthErrorMessage {
             get {
-                return ResourceManager.GetString("TicketDescMinLengthErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportDescMinLengthErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Problem description is required!.
         /// </summary>
-        internal static string TicketDescRequiredErrorMessage {
+        internal static string ReportDescRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TicketDescRequiredErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportDescRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You have to select related project!.
         /// </summary>
-        internal static string TicketProjIdRequiredErrorMessage {
+        internal static string ReportProjIdRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TicketProjIdRequiredErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportProjIdRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Maximum length of title is 50 signs!.
         /// </summary>
-        internal static string TicketTitleMaxLengthErrorMessage {
+        internal static string ReportTitleMaxLengthErrorMessage {
             get {
-                return ResourceManager.GetString("TicketTitleMaxLengthErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportTitleMaxLengthErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Minimal length of title is 5 signs!.
         /// </summary>
-        internal static string TicketTitleMinLengthErrorMessage {
+        internal static string ReportTitleMinLengthErrorMessage {
             get {
-                return ResourceManager.GetString("TicketTitleMinLengthErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportTitleMinLengthErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ticket title is required!.
+        ///   Looks up a localized string similar to Report title is required!.
         /// </summary>
-        internal static string TicketTitleRequiredErrorMessage {
+        internal static string ReportTitleRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TicketTitleRequiredErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ReportTitleRequiredErrorMessage", resourceCulture);
             }
         }
     }

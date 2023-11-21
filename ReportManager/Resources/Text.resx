@@ -144,28 +144,28 @@
   <data name="ProjectNameRequiredErrorMessage" xml:space="preserve">
     <value>Project name is required!</value>
   </data>
-  <data name="TicketCatIdRequiredErrorMessage" xml:space="preserve">
+  <data name="ReportCatIdRequiredErrorMessage" xml:space="preserve">
     <value>You have to select the category!</value>
   </data>
-  <data name="TicketDescMaxLengthErrorMessage" xml:space="preserve">
+  <data name="ReportDescMaxLengthErrorMessage" xml:space="preserve">
     <value>Maximum length of description is 1000 signs!</value>
   </data>
-  <data name="TicketDescMinLengthErrorMessage" xml:space="preserve">
+  <data name="ReportDescMinLengthErrorMessage" xml:space="preserve">
     <value>Minimal length of description is 50 signs!</value>
   </data>
-  <data name="TicketDescRequiredErrorMessage" xml:space="preserve">
+  <data name="ReportDescRequiredErrorMessage" xml:space="preserve">
     <value>Problem description is required!</value>
   </data>
-  <data name="TicketProjIdRequiredErrorMessage" xml:space="preserve">
+  <data name="ReportProjIdRequiredErrorMessage" xml:space="preserve">
     <value>You have to select related project!</value>
   </data>
-  <data name="TicketTitleMaxLengthErrorMessage" xml:space="preserve">
+  <data name="ReportTitleMaxLengthErrorMessage" xml:space="preserve">
     <value>Maximum length of title is 50 signs!</value>
   </data>
-  <data name="TicketTitleMinLengthErrorMessage" xml:space="preserve">
+  <data name="ReportTitleMinLengthErrorMessage" xml:space="preserve">
     <value>Minimal length of title is 5 signs!</value>
   </data>
-  <data name="TicketTitleRequiredErrorMessage" xml:space="preserve">
-    <value>Ticket title is required!</value>
+  <data name="ReportTitleRequiredErrorMessage" xml:space="preserve">
+    <value>Report title is required!</value>
   </data>
 </root>

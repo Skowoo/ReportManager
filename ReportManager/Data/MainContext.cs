@@ -10,9 +10,9 @@ namespace ReportManager.Data
         {
         }
 
-        public DbSet<ReportEntry> Tickets { get; set; }
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<ReportEntry> Reports { get; set; }
+        public DbSet<Category> Categories { get; set; }        
         public DbSet<Project> Projects { get; set; }
-        public DbSet<ReportEntry> ReportEntries { get; set; }
+        public DbSet<Person> Persons { get; set; }
     }
 }

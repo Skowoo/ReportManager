@@ -18,18 +18,14 @@ namespace ReportManager.Controllers
         {
             _context = context;
 
-            if (!context.Database.CanConnect())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-            }
-                
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
         }
 
         // GET: ReportEntries
         public async Task<IActionResult> Index()
         {
-            var mainContext = _context.Tickets.Include(r => r.Category).Include(r => r.Person).Include(r => r.Project);
+            var mainContext = _context.Reports.Include(r => r.Category).Include(r => r.Person).Include(r => r.Project);
             return View(await mainContext.ToListAsync());
         }
 
@@ -41,7 +37,7 @@ namespace ReportManager.Controllers
                 return NotFound();
             }
 
-            var reportEntry = await _context.Tickets
+            var reportEntry = await _context.Reports
                 .Include(r => r.Category)
                 .Include(r => r.Person)
                 .Include(r => r.Project)
@@ -57,9 +53,9 @@ namespace ReportManager.Controllers
         // GET: ReportEntries/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryId");
-            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonId");
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonName");
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectName");
             return View();
         }
 
@@ -68,7 +64,7 @@ namespace ReportManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReportEntryId,TicketTitle,TicketDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
+        public async Task<IActionResult> Create([Bind("ReportEntryId,ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
             if (ModelState.IsValid)
             {
@@ -76,9 +72,9 @@ namespace ReportManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryId", reportEntry.CategoryId);
-            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonId", reportEntry.PersonId);
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", reportEntry.ProjectId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", reportEntry.CategoryId);
+            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonName", reportEntry.PersonId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectName", reportEntry.ProjectId);
             return View(reportEntry);
         }
 
@@ -90,14 +86,14 @@ namespace ReportManager.Controllers
                 return NotFound();
             }
 
-            var reportEntry = await _context.Tickets.FindAsync(id);
+            var reportEntry = await _context.Reports.FindAsync(id);
             if (reportEntry == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryId", reportEntry.CategoryId);
-            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonId", reportEntry.PersonId);
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", reportEntry.ProjectId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", reportEntry.CategoryId);
+            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonName", reportEntry.PersonId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectName", reportEntry.ProjectId);
             return View(reportEntry);
         }
 
@@ -106,7 +102,7 @@ namespace ReportManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReportEntryId,TicketTitle,TicketDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
+        public async Task<IActionResult> Edit(int id, [Bind("ReportEntryId,ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
             if (id != reportEntry.ReportEntryId)
             {
@@ -133,9 +129,9 @@ namespace ReportManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryId", reportEntry.CategoryId);
-            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonId", reportEntry.PersonId);
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", reportEntry.ProjectId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", reportEntry.CategoryId);
+            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonName", reportEntry.PersonId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectName", reportEntry.ProjectId);
             return View(reportEntry);
         }
 
@@ -147,7 +143,7 @@ namespace ReportManager.Controllers
                 return NotFound();
             }
 
-            var reportEntry = await _context.Tickets
+            var reportEntry = await _context.Reports
                 .Include(r => r.Category)
                 .Include(r => r.Person)
                 .Include(r => r.Project)
@@ -165,10 +161,10 @@ namespace ReportManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reportEntry = await _context.Tickets.FindAsync(id);
+            var reportEntry = await _context.Reports.FindAsync(id);
             if (reportEntry != null)
             {
-                _context.Tickets.Remove(reportEntry);
+                _context.Reports.Remove(reportEntry);
             }
 
             await _context.SaveChangesAsync();
@@ -177,7 +173,7 @@ namespace ReportManager.Controllers
 
         private bool ReportEntryExists(int id)
         {
-            return _context.Tickets.Any(e => e.ReportEntryId == id);
+            return _context.Reports.Any(e => e.ReportEntryId == id);
         }
     }
 }
