@@ -8,10 +8,10 @@ namespace ReportManager.Models
         public int PersonId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameRequiredErrorMessage")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameMaxLengthErrorMessage")]
-        [MinLength(10, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameMinLengthErrorMessage")]
+        [MaxLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameMaxLengthErrorMessage")]
+        [MinLength(5, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameMinLengthErrorMessage")]
         public string PersonName { get; set; }
 
-        public ICollection<ReportEntry> ReportEntries { get; set;}
+        public ICollection<ReportEntry>? ReportEntries { get; set;}
     }
 }

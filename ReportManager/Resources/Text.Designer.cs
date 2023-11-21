@@ -61,7 +61,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max length of category name is 100 signs!.
+        ///   Looks up a localized string similar to Max length of category name is 50 signs!.
         /// </summary>
         internal static string CategoryNameMaxLengthErrorMessage {
             get {
@@ -70,7 +70,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min length of category name is 10 signs!.
+        ///   Looks up a localized string similar to Min length of category name is 5 signs!.
         /// </summary>
         internal static string CategoryNameMinLengthErrorMessage {
             get {
@@ -88,7 +88,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max length of person name is 100 signs!.
+        ///   Looks up a localized string similar to Max length of person name is 50 signs!.
         /// </summary>
         internal static string PersonNameMaxLengthErrorMessage {
             get {
@@ -97,7 +97,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min length of person name is 10 signs!.
+        ///   Looks up a localized string similar to Min length of person name is 5 signs!.
         /// </summary>
         internal static string PersonNameMinLengthErrorMessage {
             get {
@@ -115,7 +115,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max length of project name is 100 signs!.
+        ///   Looks up a localized string similar to Max length of project name is 50 signs!.
         /// </summary>
         internal static string ProjectNameMaxLengthErrorMessage {
             get {
@@ -124,7 +124,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min length of project name is 10 signs!.
+        ///   Looks up a localized string similar to Min length of project name is 5 signs!.
         /// </summary>
         internal static string ProjectNameMinLengthErrorMessage {
             get {
@@ -160,7 +160,7 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimal length of description is 50 signs!.
+        ///   Looks up a localized string similar to Minimal length of description is 20 signs!.
         /// </summary>
         internal static string ReportDescMinLengthErrorMessage {
             get {

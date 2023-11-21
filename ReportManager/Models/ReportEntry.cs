@@ -14,7 +14,7 @@ namespace ReportManager.Models
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescRequiredErrorMessage")]
         [MaxLength(1000, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescMaxLengthErrorMessage")]
-        [MinLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescMinLengthErrorMessage")]
+        [MinLength(20, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescMinLengthErrorMessage")]
         public string ReportDescription { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportCatIdRequiredErrorMessage")]

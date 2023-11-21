@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CategoryNameMaxLengthErrorMessage" xml:space="preserve">
-    <value>Max length of category name is 100 signs!</value>
+    <value>Max length of category name is 50 signs!</value>
   </data>
   <data name="CategoryNameMinLengthErrorMessage" xml:space="preserve">
-    <value>Min length of category name is 10 signs!</value>
+    <value>Min length of category name is 5 signs!</value>
   </data>
   <data name="CategoryNameRequiredErrorMessage" xml:space="preserve">
     <value>Category name is required!</value>
   </data>
   <data name="PersonNameMaxLengthErrorMessage" xml:space="preserve">
-    <value>Max length of person name is 100 signs!</value>
+    <value>Max length of person name is 50 signs!</value>
   </data>
   <data name="PersonNameMinLengthErrorMessage" xml:space="preserve">
-    <value>Min length of person name is 10 signs!</value>
+    <value>Min length of person name is 5 signs!</value>
   </data>
   <data name="PersonNameRequiredErrorMessage" xml:space="preserve">
     <value>Person name is required!</value>
   </data>
   <data name="ProjectNameMaxLengthErrorMessage" xml:space="preserve">
-    <value>Max length of project name is 100 signs!</value>
+    <value>Max length of project name is 50 signs!</value>
   </data>
   <data name="ProjectNameMinLengthErrorMessage" xml:space="preserve">
-    <value>Min length of project name is 10 signs!</value>
+    <value>Min length of project name is 5 signs!</value>
   </data>
   <data name="ProjectNameRequiredErrorMessage" xml:space="preserve">
     <value>Project name is required!</value>
@@ -151,7 +151,7 @@
     <value>Maximum length of description is 1000 signs!</value>
   </data>
   <data name="ReportDescMinLengthErrorMessage" xml:space="preserve">
-    <value>Minimal length of description is 50 signs!</value>
+    <value>Minimal length of description is 20 signs!</value>
   </data>
   <data name="ReportDescRequiredErrorMessage" xml:space="preserve">
     <value>Problem description is required!</value>
