@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ReportManager.Data;
 using ReportManager.Models;
 using System.Diagnostics;
 
@@ -8,9 +9,19 @@ namespace ReportManager.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly MainContext _context;
+
+        public HomeController(ILogger<HomeController> logger, MainContext context)
         {
             _logger = logger;
+            _context = context;
+        }
+
+        public IActionResult CreateDb()
+        {
+            _context.Database.EnsureDeleted();
+            _context.Database.EnsureCreated();
+            return View("Index");
         }
 
         public IActionResult Index()

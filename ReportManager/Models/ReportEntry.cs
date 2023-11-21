@@ -19,11 +19,11 @@ namespace ReportManager.Models
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportCatIdRequiredErrorMessage")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportProjIdRequiredErrorMessage")]
         public int ProjectId { get; set; }
-        public Project Project { get; set; }
+        public Project? Project { get; set; }
 
         public int? PersonId { get; set; }
         public Person? Person { get; set; }

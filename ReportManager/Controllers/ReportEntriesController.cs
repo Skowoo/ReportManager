@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,6 @@ namespace ReportManager.Controllers
         public ReportEntriesController(MainContext context)
         {
             _context = context;
-
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
         }
 
         // GET: ReportEntries
@@ -66,6 +64,12 @@ namespace ReportManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReportEntryId,ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
+            Console.WriteLine(reportEntry.ReportTitle);
+            Console.WriteLine(reportEntry.ReportDescription);
+            Console.WriteLine(reportEntry.CategoryId);
+            Console.WriteLine(reportEntry.ProjectId);
+            Console.WriteLine(reportEntry.PersonId);
+
             if (ModelState.IsValid)
             {
                 _context.Add(reportEntry);
