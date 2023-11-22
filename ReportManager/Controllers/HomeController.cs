@@ -9,18 +9,20 @@ namespace ReportManager.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly MainContext _context;
+        private readonly MainContext _mainContext;
 
-        public HomeController(ILogger<HomeController> logger, MainContext context)
+        private readonly IdentityContext _identityContext;
+
+        public HomeController(ILogger<HomeController> logger, MainContext mainContext, IdentityContext identityContext)
         {
             _logger = logger;
-            _context = context;
+            _mainContext = mainContext;
+            _identityContext = identityContext;
         }
 
         public IActionResult CreateDb()
         {
-            _context.Database.EnsureDeleted();
-            _context.Database.EnsureCreated();
+            DbInitializer.InitializeAll(_mainContext, _identityContext);
             return View("Index");
         }
 
