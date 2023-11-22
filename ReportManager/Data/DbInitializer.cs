@@ -1,4 +1,5 @@
-﻿using ReportManager.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ReportManager.Models;
 
 namespace ReportManager.Data
 {
@@ -16,7 +17,9 @@ namespace ReportManager.Data
 
         public static void InitializeIdentityDb(IdentityContext context)
         {
-            _identityContext = context;            
+            _identityContext = context;
+            _identityContext.Database.EnsureDeleted();
+            _identityContext.Database.Migrate();
         }
 
         public static void InitializeMainDb(MainContext context)

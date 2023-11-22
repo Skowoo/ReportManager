@@ -10,17 +10,45 @@ namespace ReportManager
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            var IdentityConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            #region Identity configuration
+
+            var IdentityConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
+                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
             builder.Services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(IdentityConnectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<IdentityContext>();
+            builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityContext>();
             builder.Services.AddControllersWithViews();
 
-            var MainConnectionString = builder.Configuration.GetConnectionString("MainConnection") ?? throw new InvalidOperationException("Connection string 'MainConnection' not found.");
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@";
+                options.User.RequireUniqueEmail = false;
+            });
+
+            #endregion
+
+            var MainConnectionString = builder.Configuration.GetConnectionString("MainConnection") ?? 
+                throw new InvalidOperationException("Connection string 'MainConnection' not found.");
+
             builder.Services.AddDbContext<MainContext>(options =>
                 options.UseSqlServer(MainConnectionString));
 
