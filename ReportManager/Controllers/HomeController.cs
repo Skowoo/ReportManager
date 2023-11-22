@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ReportManager.Data;
 using ReportManager.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace ReportManager.Controllers
 {
@@ -13,16 +14,23 @@ namespace ReportManager.Controllers
 
         private readonly IdentityContext _identityContext;
 
-        public HomeController(ILogger<HomeController> logger, MainContext mainContext, IdentityContext identityContext)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public HomeController(
+            ILogger<HomeController> logger, 
+            MainContext mainContext, 
+            IdentityContext identityContext, 
+            UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _mainContext = mainContext;
             _identityContext = identityContext;
+            _userManager = userManager;
         }
 
         public IActionResult CreateDb()
         {
-            DbInitializer.InitializeAll(_mainContext, _identityContext);
+            DbInitializer.InitializeAll(_mainContext, _identityContext, _userManager);
             return View("Index");
         }
 

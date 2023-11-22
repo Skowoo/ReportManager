@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using ReportManager.Models;
 
 namespace ReportManager.Data
@@ -9,17 +11,30 @@ namespace ReportManager.Data
 
         static IdentityContext? _identityContext;
 
-        public static void InitializeAll(MainContext mainContext, IdentityContext IdentityContext)
+        static UserManager<IdentityUser>? _userManager;
+
+        public static void InitializeAll(MainContext mainContext, IdentityContext IdentityContext, UserManager<IdentityUser> userManager)
         {
-            InitializeIdentityDb(IdentityContext);
+            InitializeIdentityDb(IdentityContext, userManager);
             InitializeMainDb(mainContext);
         }
 
-        public static void InitializeIdentityDb(IdentityContext context)
+        public async static void InitializeIdentityDb(IdentityContext context, UserManager<IdentityUser> userManager)
         {
             _identityContext = context;
             _identityContext.Database.EnsureDeleted();
             _identityContext.Database.Migrate();
+            
+            _userManager = userManager;
+
+            //Create user with IdentityUser class
+            var newUser = new IdentityUser
+            {
+                UserName = "Tester"
+            };
+
+            //Create user in database
+            await _userManager.CreateAsync(newUser, "Tester");
         }
 
         public static void InitializeMainDb(MainContext context)
