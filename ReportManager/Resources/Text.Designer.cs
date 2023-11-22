@@ -22,7 +22,7 @@ namespace ReportManager.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Text {
+    public class Text {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ReportManager.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ReportManager.Resources.Text", typeof(Text).Assembly);
@@ -51,7 +51,7 @@ namespace ReportManager.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,27 @@ namespace ReportManager.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assigned category.
+        /// </summary>
+        public static string CategoryId {
+            get {
+                return ResourceManager.GetString("CategoryId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string CategoryName {
+            get {
+                return ResourceManager.GetString("CategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max length of category name is 50 signs!.
         /// </summary>
-        internal static string CategoryNameMaxLengthErrorMessage {
+        public static string CategoryNameMaxLengthErrorMessage {
             get {
                 return ResourceManager.GetString("CategoryNameMaxLengthErrorMessage", resourceCulture);
             }
@@ -72,7 +90,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Min length of category name is 5 signs!.
         /// </summary>
-        internal static string CategoryNameMinLengthErrorMessage {
+        public static string CategoryNameMinLengthErrorMessage {
             get {
                 return ResourceManager.GetString("CategoryNameMinLengthErrorMessage", resourceCulture);
             }
@@ -81,16 +99,34 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Category name is required!.
         /// </summary>
-        internal static string CategoryNameRequiredErrorMessage {
+        public static string CategoryNameRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("CategoryNameRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assigned person.
+        /// </summary>
+        public static string PersonId {
+            get {
+                return ResourceManager.GetString("PersonId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string PersonName {
+            get {
+                return ResourceManager.GetString("PersonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max length of person name is 50 signs!.
         /// </summary>
-        internal static string PersonNameMaxLengthErrorMessage {
+        public static string PersonNameMaxLengthErrorMessage {
             get {
                 return ResourceManager.GetString("PersonNameMaxLengthErrorMessage", resourceCulture);
             }
@@ -99,7 +135,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Min length of person name is 5 signs!.
         /// </summary>
-        internal static string PersonNameMinLengthErrorMessage {
+        public static string PersonNameMinLengthErrorMessage {
             get {
                 return ResourceManager.GetString("PersonNameMinLengthErrorMessage", resourceCulture);
             }
@@ -108,16 +144,34 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Person name is required!.
         /// </summary>
-        internal static string PersonNameRequiredErrorMessage {
+        public static string PersonNameRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("PersonNameRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assigned Project.
+        /// </summary>
+        public static string ProjectId {
+            get {
+                return ResourceManager.GetString("ProjectId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string ProjectName {
+            get {
+                return ResourceManager.GetString("ProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max length of project name is 50 signs!.
         /// </summary>
-        internal static string ProjectNameMaxLengthErrorMessage {
+        public static string ProjectNameMaxLengthErrorMessage {
             get {
                 return ResourceManager.GetString("ProjectNameMaxLengthErrorMessage", resourceCulture);
             }
@@ -126,7 +180,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Min length of project name is 5 signs!.
         /// </summary>
-        internal static string ProjectNameMinLengthErrorMessage {
+        public static string ProjectNameMinLengthErrorMessage {
             get {
                 return ResourceManager.GetString("ProjectNameMinLengthErrorMessage", resourceCulture);
             }
@@ -135,7 +189,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Project name is required!.
         /// </summary>
-        internal static string ProjectNameRequiredErrorMessage {
+        public static string ProjectNameRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("ProjectNameRequiredErrorMessage", resourceCulture);
             }
@@ -144,7 +198,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You have to select the category!.
         /// </summary>
-        internal static string ReportCatIdRequiredErrorMessage {
+        public static string ReportCatIdRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("ReportCatIdRequiredErrorMessage", resourceCulture);
             }
@@ -153,7 +207,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Maximum length of description is 1000 signs!.
         /// </summary>
-        internal static string ReportDescMaxLengthErrorMessage {
+        public static string ReportDescMaxLengthErrorMessage {
             get {
                 return ResourceManager.GetString("ReportDescMaxLengthErrorMessage", resourceCulture);
             }
@@ -162,7 +216,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Minimal length of description is 20 signs!.
         /// </summary>
-        internal static string ReportDescMinLengthErrorMessage {
+        public static string ReportDescMinLengthErrorMessage {
             get {
                 return ResourceManager.GetString("ReportDescMinLengthErrorMessage", resourceCulture);
             }
@@ -171,25 +225,43 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Problem description is required!.
         /// </summary>
-        internal static string ReportDescRequiredErrorMessage {
+        public static string ReportDescRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("ReportDescRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string ReportDescription {
+            get {
+                return ResourceManager.GetString("ReportDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have to select related project!.
         /// </summary>
-        internal static string ReportProjIdRequiredErrorMessage {
+        public static string ReportProjIdRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("ReportProjIdRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string ReportTitle {
+            get {
+                return ResourceManager.GetString("ReportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum length of title is 50 signs!.
         /// </summary>
-        internal static string ReportTitleMaxLengthErrorMessage {
+        public static string ReportTitleMaxLengthErrorMessage {
             get {
                 return ResourceManager.GetString("ReportTitleMaxLengthErrorMessage", resourceCulture);
             }
@@ -198,7 +270,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Minimal length of title is 5 signs!.
         /// </summary>
-        internal static string ReportTitleMinLengthErrorMessage {
+        public static string ReportTitleMinLengthErrorMessage {
             get {
                 return ResourceManager.GetString("ReportTitleMinLengthErrorMessage", resourceCulture);
             }
@@ -207,7 +279,7 @@ namespace ReportManager.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Report title is required!.
         /// </summary>
-        internal static string ReportTitleRequiredErrorMessage {
+        public static string ReportTitleRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("ReportTitleRequiredErrorMessage", resourceCulture);
             }

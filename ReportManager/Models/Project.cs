@@ -10,6 +10,7 @@ namespace ReportManager.Models
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ProjectNameRequiredErrorMessage")]
         [MaxLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ProjectNameMaxLengthErrorMessage")]
         [MinLength(5, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ProjectNameMinLengthErrorMessage")]
+        [Display(ResourceType = typeof(Text), Name = "ProjectName")]
         public string ProjectName { get; set; }
 
         public ICollection<ReportEntry>? ReportEntries { get; set; }

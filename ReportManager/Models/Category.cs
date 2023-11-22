@@ -1,5 +1,7 @@
 ﻿using ReportManager.Resources;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 
 namespace ReportManager.Models
 {
@@ -10,6 +12,7 @@ namespace ReportManager.Models
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "CategoryNameRequiredErrorMessage")]
         [MaxLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "CategoryNameMaxLengthErrorMessage")]
         [MinLength(5, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "CategoryNameMinLengthErrorMessage")]
+        [Display(ResourceType = typeof(Text), Name = "CategoryName")]
         public string CategoryName { get; set; }
 
         public ICollection<ReportEntry>? ReportEntries { get; set; }
