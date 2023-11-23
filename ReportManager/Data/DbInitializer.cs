@@ -30,11 +30,11 @@ namespace ReportManager.Data
             //Create user with IdentityUser class
             var newUser = new IdentityUser
             {
-                UserName = "Tester"
+                UserName = "Admin"
             };
 
             //Create user in database
-            await _userManager.CreateAsync(newUser, "Tester");
+            await _userManager.CreateAsync(newUser, "Admin");
         }
 
         public static void InitializeMainDb(MainContext context)
