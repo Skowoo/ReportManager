@@ -64,7 +64,7 @@ namespace ReportManager.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReportEntryId,ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
+        public async Task<IActionResult> Create([Bind("ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
             Console.WriteLine(reportEntry.ReportTitle);
             Console.WriteLine(reportEntry.ReportDescription);
