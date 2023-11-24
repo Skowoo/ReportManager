@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Debug";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Debug page</h1>
+    <hr/>
+    <p>Click button below to create (or reset) application databases with sample data</p>
+    <input type="button" value="Create databases" onclick="location.href='@Url.Action("CreateAllDb", "Home")'" />
+    <p>Click button below to delete application databases</p>
+    <input type="button" value="Delete databases" onclick="location.href='@Url.Action("DeleteAllDb", "Home")'" />
+</div>
+

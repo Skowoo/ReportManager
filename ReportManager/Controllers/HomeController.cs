@@ -28,26 +28,33 @@ namespace ReportManager.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult CreateDb()
-        {
-            DbInitializer.InitializeAll(_mainContext, _identityContext, _userManager);
-            return View("Index");
-        }
+        public IActionResult Index() => View();
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Privacy() => View();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        public IActionResult Debug() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult CreateAllDb()
+        {
+            DbInitializer.InitializeAll(_mainContext, _identityContext, _userManager);
+            return Redirect("../ReportEntries/Index");
+        }
+
+        public IActionResult DeleteAllDb() 
+        {
+            if (_mainContext.Database.CanConnect())
+                _mainContext.Database.EnsureDeleted();
+
+            if (_identityContext.Database.CanConnect())
+                _identityContext.Database.EnsureDeleted();
+
+            return View("Debug");
         }
     }
 }
