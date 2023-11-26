@@ -1,4 +1,8 @@
-﻿@model IEnumerable<ReportManager.Models.ReportEntry>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<ReportManager.Models.ReportEntry>
 
 @{
     ViewData["Title"] = "Index";
@@ -48,12 +52,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Person.PersonName)
             </td>
+            @if(SignInManager.IsSignedIn(User))
+            {
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReportEntryId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ReportEntryId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ReportEntryId">Delete</a>
             </td>
-        </tr>
+            }
+            else
+            {
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ReportEntryId">Details</a>
+            </td>
+            }
+            </tr>
 }
     </tbody>
 </table>
