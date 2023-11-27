@@ -11,7 +11,7 @@ using ReportManager.Models;
 
 namespace ReportManager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = DbInitializer.AdminRoleName)]
     public class PeopleController : Controller
     {
         private readonly MainContext _context;

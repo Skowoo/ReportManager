@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Plugins;
 using ReportManager.Models;
 
 namespace ReportManager.Data
@@ -13,28 +12,47 @@ namespace ReportManager.Data
 
         static UserManager<IdentityUser>? _userManager;
 
-        public static void InitializeAll(MainContext mainContext, IdentityContext IdentityContext, UserManager<IdentityUser> userManager)
+        static string initialAdminCredentials = "Admin";
+        static string initialUserCredentials = "User";
+        public const string AdminRoleName = "Administrator";
+        public const string UserRoleName = "User";
+
+        public static void InitializeAll(
+            MainContext mainContext, 
+            IdentityContext IdentityContext, 
+            UserManager<IdentityUser> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
-            InitializeIdentityDb(IdentityContext, userManager);
+            InitializeIdentityDb(IdentityContext, userManager, roleManager);
             InitializeMainDb(mainContext);
         }
 
-        public async static void InitializeIdentityDb(IdentityContext context, UserManager<IdentityUser> userManager)
+        public async static void InitializeIdentityDb(
+            IdentityContext context,
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _identityContext = context;
             _identityContext.Database.EnsureDeleted();
             _identityContext.Database.Migrate();
-            
+
             _userManager = userManager;
 
-            //Create user with IdentityUser class
+            var newAdmin = new IdentityUser
+            {
+                UserName = initialAdminCredentials
+            };
+            await _userManager.CreateAsync(newAdmin, initialAdminCredentials);
+            await roleManager.CreateAsync(new IdentityRole(AdminRoleName));
+            await userManager.AddToRoleAsync(newAdmin, AdminRoleName);
+
             var newUser = new IdentityUser
             {
-                UserName = "Admin"
+                UserName = initialUserCredentials
             };
-
-            //Create user in database
-            await _userManager.CreateAsync(newUser, "Admin");
+            await _userManager.CreateAsync(newUser, initialUserCredentials);
+            await roleManager.CreateAsync(new IdentityRole(UserRoleName));
+            await userManager.AddToRoleAsync(newUser, UserRoleName);
         }
 
         public static void InitializeMainDb(MainContext context)

@@ -12,6 +12,7 @@ using ReportManager.Models;
 
 namespace ReportManager.Controllers
 {
+    [Authorize(Roles = DbInitializer.AdminRoleName + "," + DbInitializer.UserRoleName)]
     public class ReportEntriesController : Controller
     {
         private readonly MainContext _context;
@@ -62,7 +63,7 @@ namespace ReportManager.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = DbInitializer.AdminRoleName)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
@@ -85,7 +86,7 @@ namespace ReportManager.Controllers
         }
 
         // GET: ReportEntries/Edit/5
-        [Authorize]
+        [Authorize(Roles = DbInitializer.AdminRoleName)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -108,7 +109,7 @@ namespace ReportManager.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = DbInitializer.AdminRoleName)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReportEntryId,ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
@@ -144,7 +145,7 @@ namespace ReportManager.Controllers
         }
 
         // GET: ReportEntries/Delete/5
-        [Authorize]
+        [Authorize(Roles = DbInitializer.AdminRoleName)]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -168,7 +169,7 @@ namespace ReportManager.Controllers
         // POST: ReportEntries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = DbInitializer.AdminRoleName)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var reportEntry = await _context.Reports.FindAsync(id);

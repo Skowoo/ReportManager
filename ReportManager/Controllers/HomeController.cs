@@ -16,16 +16,20 @@ namespace ReportManager.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
+        private readonly RoleManager<IdentityRole> _roleManager;
+
         public HomeController(
             ILogger<HomeController> logger, 
-            MainContext mainContext, 
-            IdentityContext identityContext, 
-            UserManager<IdentityUser> userManager)
+            MainContext mainContext,
+            IdentityContext identityContext,
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _logger = logger;
             _mainContext = mainContext;
             _identityContext = identityContext;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Index() => View();
@@ -42,7 +46,7 @@ namespace ReportManager.Controllers
 
         public IActionResult CreateAllDb()
         {
-            DbInitializer.InitializeAll(_mainContext, _identityContext, _userManager);
+            DbInitializer.InitializeAll(_mainContext, _identityContext, _userManager, _roleManager);
             return Redirect("../ReportEntries/Index");
         }
 

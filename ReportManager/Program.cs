@@ -20,7 +20,10 @@ namespace ReportManager
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityContext>();
+            builder.Services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<IdentityContext>();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.Configure<IdentityOptions>(options =>
