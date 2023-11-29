@@ -23,10 +23,20 @@ namespace ReportManager.Controllers
         }
 
         // GET: ReportEntries
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var mainContext = _context.Reports.Include(r => r.Category).Include(r => r.Person).Include(r => r.Project);
-            return View(await mainContext.ToListAsync());
+            var mainContext = _context.Reports.Select(x => x);
+
+            if (!string.IsNullOrEmpty(searchString))
+                mainContext = mainContext.Where(x => 
+                x.ReportTitle.Contains(searchString) || 
+                x.ReportDescription.Contains(searchString));
+            
+            return View(await mainContext
+                .Include(r => r.Category)
+                .Include(r => r.Person)
+                .Include(r => r.Project)
+                .ToListAsync());
         }
 
         // GET: ReportEntries/Details/5

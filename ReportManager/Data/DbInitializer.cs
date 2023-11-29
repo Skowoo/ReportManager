@@ -6,8 +6,8 @@ namespace ReportManager.Data
 {
     public static class DbInitializer
     {
-        static string initialAdminCredentials = "Admin";
-        static string initialUserCredentials = "User";
+        static readonly string initialAdminCredentials = "Admin";
+        static readonly string initialUserCredentials = "User";
         public const string AdminRoleName = "Administrator";
         public const string UserRoleName = "User";
 
@@ -51,23 +51,23 @@ namespace ReportManager.Data
             mainContext.Database.EnsureDeleted();
             mainContext.Database.EnsureCreated();
 
-            for (int i =  1; i <= 10; i++)
+            for (int i =  1; i <= 100; i++)
             {
                 if (i <= 5)
                 {
-                    Category category = new Category()
+                    Category category = new()
                     {
                         CategoryName = $"ExampleCategory{i}"
                     };
                     mainContext.Add(category);
 
-                    Project project = new Project()
+                    Project project = new()
                     {
                         ProjectName = $"ExampleProject{i}"
                     };
                     mainContext.Add(project);
 
-                    Person person = new Person()
+                    Person person = new()
                     {
                         PersonName = $"ExamplePerson{i}"
                     };
@@ -80,7 +80,7 @@ namespace ReportManager.Data
 
                 int upperRndLimit = mainContext.Categories.Count() + 1;
 
-                ReportEntry reportEntry = new ReportEntry()
+                ReportEntry reportEntry = new()
                 {
                     ReportTitle = $"ExampleTitle{i}",
                     ReportDescription = $"Example problem description created automatically by rather poorly designed generator in it's {i} iteration :)",
