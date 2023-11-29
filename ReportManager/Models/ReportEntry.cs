@@ -11,13 +11,13 @@ namespace ReportManager.Models
         [MaxLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportTitleMaxLengthErrorMessage")]
         [MinLength(5, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportTitleMinLengthErrorMessage")]
         [Display(ResourceType = typeof(Text), Name = "ReportTitle")]
-        public string ReportTitle { get; set; }
+        public string ReportTitle { get; set; } = default!;
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescRequiredErrorMessage")]
         [MaxLength(1000, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescMaxLengthErrorMessage")]
         [MinLength(20, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportDescMinLengthErrorMessage")]
         [Display(ResourceType = typeof(Text), Name = "ReportDescription")]
-        public string ReportDescription { get; set; }
+        public string ReportDescription { get; set; } = default!;
 
         [Required(ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "ReportCatIdRequiredErrorMessage")]
         [Display(ResourceType = typeof(Text), Name = "CategoryId")]

@@ -13,7 +13,7 @@ namespace ReportManager.Models
         [MaxLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "CategoryNameMaxLengthErrorMessage")]
         [MinLength(5, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "CategoryNameMinLengthErrorMessage")]
         [Display(ResourceType = typeof(Text), Name = "CategoryName")]
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } = default!;
 
         public ICollection<ReportEntry>? ReportEntries { get; set; }
     }

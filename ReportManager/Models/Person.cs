@@ -11,7 +11,7 @@ namespace ReportManager.Models
         [MaxLength(50, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameMaxLengthErrorMessage")]
         [MinLength(5, ErrorMessageResourceType = typeof(Text), ErrorMessageResourceName = "PersonNameMinLengthErrorMessage")]
         [Display(ResourceType = typeof(Text), Name = "PersonName")]
-        public string PersonName { get; set; }
+        public string PersonName { get; set; } = default!;
 
         public ICollection<ReportEntry>? ReportEntries { get; set;}
     }
