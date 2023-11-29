@@ -6,12 +6,6 @@ namespace ReportManager.Data
 {
     public static class DbInitializer
     {
-        static MainContext? _mainContext;
-
-        static IdentityContext? _identityContext;
-
-        static UserManager<IdentityUser>? _userManager;
-
         static string initialAdminCredentials = "Admin";
         static string initialUserCredentials = "User";
         public const string AdminRoleName = "Administrator";
@@ -23,26 +17,23 @@ namespace ReportManager.Data
             UserManager<IdentityUser> userManager, 
             RoleManager<IdentityRole> roleManager)
         {
-            InitializeIdentityDb(IdentityContext, userManager, roleManager);
+            InitializeIdentityDbAsync(IdentityContext, userManager, roleManager);
             InitializeMainDb(mainContext);
         }
 
-        public async static void InitializeIdentityDb(
-            IdentityContext context,
+        public async static void InitializeIdentityDbAsync(
+            IdentityContext identityContext,
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
-            _identityContext = context;
-            _identityContext.Database.EnsureDeleted();
-            _identityContext.Database.Migrate();
-
-            _userManager = userManager;
+            identityContext.Database.EnsureDeleted();
+            identityContext.Database.Migrate();
 
             var newAdmin = new IdentityUser
             {
                 UserName = initialAdminCredentials
             };
-            await _userManager.CreateAsync(newAdmin, initialAdminCredentials);
+            await userManager.CreateAsync(newAdmin, initialAdminCredentials);
             await roleManager.CreateAsync(new IdentityRole(AdminRoleName));
             await userManager.AddToRoleAsync(newAdmin, AdminRoleName);
 
@@ -50,17 +41,15 @@ namespace ReportManager.Data
             {
                 UserName = initialUserCredentials
             };
-            await _userManager.CreateAsync(newUser, initialUserCredentials);
+            await userManager.CreateAsync(newUser, initialUserCredentials);
             await roleManager.CreateAsync(new IdentityRole(UserRoleName));
             await userManager.AddToRoleAsync(newUser, UserRoleName);
         }
 
-        public static void InitializeMainDb(MainContext context)
+        public static void InitializeMainDb(MainContext mainContext)
         {
-            _mainContext = context;
-
-            _mainContext.Database.EnsureDeleted();
-            _mainContext.Database.EnsureCreated();
+            mainContext.Database.EnsureDeleted();
+            mainContext.Database.EnsureCreated();
 
             for (int i =  1; i <= 10; i++)
             {
@@ -70,37 +59,39 @@ namespace ReportManager.Data
                     {
                         CategoryName = $"ExampleCategory{i}"
                     };
-                    _mainContext.Add(category);
+                    mainContext.Add(category);
 
                     Project project = new Project()
                     {
                         ProjectName = $"ExampleProject{i}"
                     };
-                    _mainContext.Add(project);
+                    mainContext.Add(project);
 
                     Person person = new Person()
                     {
                         PersonName = $"ExamplePerson{i}"
                     };
-                    _mainContext.Add(person);
+                    mainContext.Add(person);
 
-                    _mainContext.SaveChanges();
+                    mainContext.SaveChanges();
                 }
 
                 Random rnd = new();
+
+                int upperRndLimit = mainContext.Categories.Count() + 1;
 
                 ReportEntry reportEntry = new ReportEntry()
                 {
                     ReportTitle = $"ExampleTitle{i}",
                     ReportDescription = $"Example problem description created automatically by rather poorly designed generator in it's {i} iteration :)",
-                    CategoryId = rnd.Next(1, _mainContext.Categories.Count()),
-                    ProjectId = rnd.Next(1, _mainContext.Projects.Count()),
-                    PersonId = rnd.Next(1, _mainContext.Persons.Count()),
+                    CategoryId = rnd.Next(1, upperRndLimit),
+                    ProjectId = rnd.Next(1, upperRndLimit),
+                    PersonId = rnd.Next(1, upperRndLimit),
                 };
 
-                _mainContext.Add(reportEntry);
+                mainContext.Add(reportEntry);
 
-                _mainContext.SaveChanges();
+                mainContext.SaveChanges();
             }
         }
     }

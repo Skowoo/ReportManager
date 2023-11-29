@@ -8,8 +8,6 @@ namespace ReportManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private readonly MainContext _mainContext;
 
         private readonly IdentityContext _identityContext;
@@ -18,14 +16,12 @@ namespace ReportManager.Controllers
 
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public HomeController(
-            ILogger<HomeController> logger, 
+        public HomeController( 
             MainContext mainContext,
             IdentityContext identityContext,
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
-            _logger = logger;
             _mainContext = mainContext;
             _identityContext = identityContext;
             _userManager = userManager;
@@ -39,10 +35,7 @@ namespace ReportManager.Controllers
         public IActionResult Debug() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
         public IActionResult CreateAllDb()
         {
