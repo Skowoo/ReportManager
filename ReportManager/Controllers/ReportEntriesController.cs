@@ -23,7 +23,7 @@ namespace ReportManager.Controllers
         }
 
         // GET: ReportEntries
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
             var mainContext = _context.Reports.Select(x => x);
 
@@ -34,7 +34,53 @@ namespace ReportManager.Controllers
                 x.Project.ProjectName.Contains(searchString) ||
                 x.Category.CategoryName.Contains(searchString) ||
                 x.Person.PersonName.Contains(searchString));
-            
+
+            #region Sorting
+
+            ViewBag.TitleSort = sortOrder == "title" ? "title_desc" : "title";
+            ViewBag.DescriptionSort = sortOrder == "description" ? "description_desc" : "description";
+            ViewBag.CategorySort = sortOrder == "category" ? "category_desc" : "category";
+            ViewBag.ProjectSort = sortOrder == "project" ? "project_desc" : "project";
+            ViewBag.PersonSort = sortOrder == "person" ? "person_desc" : "person";
+
+            switch (sortOrder)
+            {
+                case "title":
+                    mainContext = mainContext.OrderBy(x => x.ReportTitle);
+                    break;
+                case "title_desc":
+                    mainContext = mainContext.OrderByDescending(x => x.ReportTitle);
+                    break;
+                case "description":
+                    mainContext = mainContext.OrderBy(x => x.ReportDescription);
+                    break;
+                case "description_desc":
+                    mainContext = mainContext.OrderByDescending(x => x.ReportDescription);
+                    break;
+                case "category":
+                    mainContext = mainContext.OrderBy(x => x.Category.CategoryName);
+                    break;
+                case "category_desc":
+                    mainContext = mainContext.OrderByDescending(x => x.Category.CategoryName);
+                    break;
+                case "project":
+                    mainContext = mainContext.OrderBy(x => x.Project.ProjectName);
+                    break;
+                case "project_desc":
+                    mainContext = mainContext.OrderByDescending(x => x.Project.ProjectName);
+                    break;
+                case "person":
+                    mainContext = mainContext.OrderBy(x => x.Person.PersonName);
+                    break;
+                case "person_desc":
+                    mainContext = mainContext.OrderByDescending(x => x.Person.PersonName);
+                    break;
+                default:
+                    break;
+            }
+
+            #endregion
+
             return View(await mainContext
                 .Include(r => r.Category)
                 .Include(r => r.Person)

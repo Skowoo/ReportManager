@@ -11,15 +11,12 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
 @using (Html.BeginForm())
 {
     <p>
         Find: @Html.TextBox("searchString")
-        <input type="submit" value="Search"/>
+        <input type="submit" value="Search"/> |
+        <a asp-action="Create">Create New</a>
     </p>
 }
 
@@ -27,19 +24,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ReportTitle)
+                @Html.ActionLink(Html.DisplayNameFor(model => model.ReportTitle), "Index", new { sortOrder = ViewBag.TitleSort })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReportDescription)
+                @Html.ActionLink(Html.DisplayNameFor(model => model.ReportDescription), "Index", new { sortOrder = ViewBag.DescriptionSort })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Category), "Index", new { sortOrder = ViewBag.CategorySort })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project)
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Project), "Index", new { sortOrder = ViewBag.ProjectSort })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Person)
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Person), "Index", new { sortOrder = ViewBag.PersonSort })
             </th>
             <th></th>
         </tr>
