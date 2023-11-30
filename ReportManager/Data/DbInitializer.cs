@@ -89,6 +89,9 @@ namespace ReportManager.Data
                     PersonId = rnd.Next(1, upperRndLimit),
                 };
 
+                if (rnd.Next(0, 10) < 2)
+                    reportEntry.PersonId = null;
+
                 mainContext.Add(reportEntry);
 
                 mainContext.SaveChanges();

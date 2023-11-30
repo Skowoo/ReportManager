@@ -11,10 +11,10 @@
 
 <h1>Index</h1>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "ReportEntries", FormMethod.Get))
 {
     <p>
-        Find: @Html.TextBox("searchString")
+        Find: @Html.TextBox("searchString", (string)ViewBag.searchString)
         <input type="submit" value="Search"/> |
         <a asp-action="Create">Create New</a>
     </p>
@@ -24,19 +24,19 @@
     <thead>
         <tr>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.ReportTitle), "Index", new { sortOrder = ViewBag.TitleSort })
+                @Html.ActionLink(Html.DisplayNameFor(model => model.ReportTitle), "Index", new { sortOrder = ViewBag.TitleSort, searchString = ViewBag.searchString })
             </th>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.ReportDescription), "Index", new { sortOrder = ViewBag.DescriptionSort })
+                @Html.ActionLink(Html.DisplayNameFor(model => model.ReportDescription), "Index", new { sortOrder = ViewBag.DescriptionSort, searchString = ViewBag.searchString })
             </th>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.Category), "Index", new { sortOrder = ViewBag.CategorySort })
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Category), "Index", new { sortOrder = ViewBag.CategorySort, searchString = ViewBag.searchString })
             </th>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.Project), "Index", new { sortOrder = ViewBag.ProjectSort })
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Project), "Index", new { sortOrder = ViewBag.ProjectSort, searchString = ViewBag.searchString })
             </th>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.Person), "Index", new { sortOrder = ViewBag.PersonSort })
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Person), "Index", new { sortOrder = ViewBag.PersonSort, searchString = ViewBag.searchString })
             </th>
             <th></th>
         </tr>

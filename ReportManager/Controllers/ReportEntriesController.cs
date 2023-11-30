@@ -27,6 +27,10 @@ namespace ReportManager.Controllers
         {
             var mainContext = _context.Reports.Select(x => x);
 
+            #region Searching
+#pragma warning disable CS8602 // Dereference of a possibly null reference - Nulls can be sorted.
+            ViewBag.searchString = searchString;
+
             if (!string.IsNullOrEmpty(searchString))
                 mainContext = mainContext.Where(x =>
                 x.ReportTitle.Contains(searchString) ||
@@ -34,6 +38,8 @@ namespace ReportManager.Controllers
                 x.Project.ProjectName.Contains(searchString) ||
                 x.Category.CategoryName.Contains(searchString) ||
                 x.Person.PersonName.Contains(searchString));
+
+                #endregion
 
             #region Sorting
 
@@ -78,7 +84,7 @@ namespace ReportManager.Controllers
                 default:
                     break;
             }
-
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             #endregion
 
             return View(await mainContext
