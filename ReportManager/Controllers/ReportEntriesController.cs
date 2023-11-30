@@ -28,9 +28,12 @@ namespace ReportManager.Controllers
             var mainContext = _context.Reports.Select(x => x);
 
             if (!string.IsNullOrEmpty(searchString))
-                mainContext = mainContext.Where(x => 
-                x.ReportTitle.Contains(searchString) || 
-                x.ReportDescription.Contains(searchString));
+                mainContext = mainContext.Where(x =>
+                x.ReportTitle.Contains(searchString) ||
+                x.ReportDescription.Contains(searchString) ||
+                x.Project.ProjectName.Contains(searchString) ||
+                x.Category.CategoryName.Contains(searchString) ||
+                x.Person.PersonName.Contains(searchString));
             
             return View(await mainContext
                 .Include(r => r.Category)
