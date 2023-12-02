@@ -131,12 +131,6 @@ namespace ReportManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReportTitle,ReportDescription,CategoryId,ProjectId,PersonId")] ReportEntry reportEntry)
         {
-            Console.WriteLine(reportEntry.ReportTitle);
-            Console.WriteLine(reportEntry.ReportDescription);
-            Console.WriteLine(reportEntry.CategoryId);
-            Console.WriteLine(reportEntry.ProjectId);
-            Console.WriteLine(reportEntry.PersonId);
-
             if (ModelState.IsValid)
             {
                 _context.Add(reportEntry);
