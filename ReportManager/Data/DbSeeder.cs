@@ -11,7 +11,7 @@ namespace ReportManager.Data
         public const string AdminRoleName = "Administrator";
         public const string UserRoleName = "User";
 
-        public async static Task InitializeAll(
+        public async static Task InitializeDb(
             MainContext dbContext, 
             UserManager<IdentityUser> userManager, 
             RoleManager<IdentityRole> roleManager)

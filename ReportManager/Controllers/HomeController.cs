@@ -6,13 +6,23 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ReportManager.Controllers
 {
-    public class HomeController(MainContext mainContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager) : Controller
+    public class HomeController : Controller
     {
-        private readonly MainContext _mainContext = mainContext;
+        private readonly MainContext _mainContext;
 
-        private readonly UserManager<IdentityUser> _userManager = userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public HomeController(MainContext mainContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            if (!mainContext.Database.CanConnect())
+                DbSeeder.InitializeDb(mainContext, userManager, roleManager).Wait();
+
+            _mainContext = mainContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
 
         public IActionResult Index() => View();
 
@@ -25,7 +35,7 @@ namespace ReportManager.Controllers
 
         public async Task<IActionResult> CreateAllDb()
         {
-            await DbSeeder.InitializeAll(_mainContext, _userManager, _roleManager);
+            await DbSeeder.InitializeDb(_mainContext, _userManager, _roleManager);
             return Redirect("../ReportEntries/Index");
         }
 

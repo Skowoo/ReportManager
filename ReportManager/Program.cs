@@ -9,9 +9,7 @@ namespace ReportManager
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            #region Identity configuration
-
+            
             var IdentityConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
                 throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -20,11 +18,11 @@ namespace ReportManager
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            #region Identity configuration
+
             builder.Services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<MainContext>();
-
-            builder.Services.AddControllersWithViews();
+                .AddEntityFrameworkStores<MainContext>();            
 
             builder.Services.Configure<IdentityOptions>(options =>
             {
@@ -48,6 +46,8 @@ namespace ReportManager
             });
 
             #endregion
+
+            builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
