@@ -4,30 +4,22 @@ using ReportManager.Models;
 
 namespace ReportManager.Data
 {
-    public static class DbInitializer
+    public static class DbSeeder
     {
         static readonly string initialAdminCredentials = "Admin";
         static readonly string initialUserCredentials = "User";
         public const string AdminRoleName = "Administrator";
         public const string UserRoleName = "User";
 
-        public static void InitializeAll(
-            MainContext mainContext, 
-            IdentityContext IdentityContext, 
+        public async static Task InitializeAll(
+            MainContext dbContext, 
             UserManager<IdentityUser> userManager, 
             RoleManager<IdentityRole> roleManager)
         {
-            InitializeIdentityDbAsync(IdentityContext, userManager, roleManager);
-            InitializeMainDb(mainContext);
-        }
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.Migrate();
 
-        public async static void InitializeIdentityDbAsync(
-            IdentityContext identityContext,
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager)
-        {
-            identityContext.Database.EnsureDeleted();
-            identityContext.Database.Migrate();
+            #region Initialize default users
 
             var newAdmin = new IdentityUser
             {
@@ -44,14 +36,12 @@ namespace ReportManager.Data
             await userManager.CreateAsync(newUser, initialUserCredentials);
             await roleManager.CreateAsync(new IdentityRole(UserRoleName));
             await userManager.AddToRoleAsync(newUser, UserRoleName);
-        }
 
-        public static void InitializeMainDb(MainContext mainContext)
-        {
-            mainContext.Database.EnsureDeleted();
-            mainContext.Database.EnsureCreated();
+            #endregion
 
-            for (int i =  1; i <= 100; i++)
+            #region Initialize example data
+
+            for (int i = 1; i <= 100; i++)
             {
                 if (i <= 5)
                 {
@@ -59,26 +49,26 @@ namespace ReportManager.Data
                     {
                         CategoryName = $"ExampleCategory{i}"
                     };
-                    mainContext.Add(category);
+                    dbContext.Add(category);
 
                     Project project = new()
                     {
                         ProjectName = $"ExampleProject{i}"
                     };
-                    mainContext.Add(project);
+                    dbContext.Add(project);
 
                     Person person = new()
                     {
                         PersonName = $"ExamplePerson{i}"
                     };
-                    mainContext.Add(person);
+                    dbContext.Add(person);
 
-                    mainContext.SaveChanges();
+                    dbContext.SaveChanges();
                 }
 
                 Random rnd = new();
 
-                int upperRndLimit = mainContext.Categories.Count() + 1;
+                int upperRndLimit = dbContext.Categories.Count() + 1;
 
                 ReportEntry reportEntry = new()
                 {
@@ -92,10 +82,11 @@ namespace ReportManager.Data
                 if (rnd.Next(0, 10) < 2)
                     reportEntry.PersonId = null;
 
-                mainContext.Add(reportEntry);
+                dbContext.Add(reportEntry);
 
-                mainContext.SaveChanges();
+                dbContext.SaveChanges();
             }
+            #endregion
         }
     }
 }

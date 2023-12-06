@@ -6,27 +6,13 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ReportManager.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(MainContext mainContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager) : Controller
     {
-        private readonly MainContext _mainContext;
+        private readonly MainContext _mainContext = mainContext;
 
-        private readonly IdentityContext _identityContext;
+        private readonly UserManager<IdentityUser> _userManager = userManager;
 
-        private readonly UserManager<IdentityUser> _userManager;
-
-        private readonly RoleManager<IdentityRole> _roleManager;
-
-        public HomeController( 
-            MainContext mainContext,
-            IdentityContext identityContext,
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager)
-        {
-            _mainContext = mainContext;
-            _identityContext = identityContext;
-            _userManager = userManager;
-            _roleManager = roleManager;
-        }
+        private readonly RoleManager<IdentityRole> _roleManager = roleManager;
 
         public IActionResult Index() => View();
 
@@ -37,9 +23,9 @@ namespace ReportManager.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
-        public IActionResult CreateAllDb()
+        public async Task<IActionResult> CreateAllDb()
         {
-            DbInitializer.InitializeAll(_mainContext, _identityContext, _userManager, _roleManager);
+            await DbSeeder.InitializeAll(_mainContext, _userManager, _roleManager);
             return Redirect("../ReportEntries/Index");
         }
 
@@ -47,9 +33,6 @@ namespace ReportManager.Controllers
         {
             if (_mainContext.Database.CanConnect())
                 _mainContext.Database.EnsureDeleted();
-
-            if (_identityContext.Database.CanConnect())
-                _identityContext.Database.EnsureDeleted();
 
             return View("Debug");
         }

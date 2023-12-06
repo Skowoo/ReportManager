@@ -59,7 +59,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Person.PersonName)
             </td>
-            @if(User.IsInRole(DbInitializer.AdminRoleName))
+            @if(User.IsInRole(DbSeeder.AdminRoleName))
             {
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReportEntryId">Edit</a> |

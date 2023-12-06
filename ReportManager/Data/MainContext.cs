@@ -1,14 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ReportManager.Models;
 
 namespace ReportManager.Data
 {
-    public class MainContext : DbContext
+    public class MainContext : IdentityDbContext
     {
         public MainContext(DbContextOptions<MainContext> options)
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder) 
+            => base.OnModelCreating(builder);
 
         public DbSet<ReportEntry> Reports { get; set; }
         public DbSet<Category> Categories { get; set; }        

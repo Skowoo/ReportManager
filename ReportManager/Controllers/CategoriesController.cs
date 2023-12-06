@@ -11,7 +11,7 @@ using ReportManager.Models;
 
 namespace ReportManager.Controllers
 {
-    [Authorize(Roles = DbInitializer.AdminRoleName)]
+    [Authorize(Roles = DbSeeder.AdminRoleName)]
     public class CategoriesController : Controller
     {
         private readonly MainContext _context;

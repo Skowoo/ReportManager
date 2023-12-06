@@ -29,7 +29,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ReportEntries" asp-action="Index">Reports</a>
                             </li>
                         }
-                        @if (SignInManager.IsSignedIn(User) && User.IsInRole(DbInitializer.AdminRoleName))
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole(DbSeeder.AdminRoleName))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>

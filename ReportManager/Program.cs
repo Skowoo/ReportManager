@@ -15,14 +15,14 @@ namespace ReportManager
             var IdentityConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
                 throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-            builder.Services.AddDbContext<IdentityContext>(options =>
+            builder.Services.AddDbContext<MainContext>(options =>
                 options.UseSqlServer(IdentityConnectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<IdentityContext>();
+                .AddEntityFrameworkStores<MainContext>();
 
             builder.Services.AddControllersWithViews();
 
@@ -48,12 +48,6 @@ namespace ReportManager
             });
 
             #endregion
-
-            var MainConnectionString = builder.Configuration.GetConnectionString("MainConnection") ?? 
-                throw new InvalidOperationException("Connection string 'MainConnection' not found.");
-
-            builder.Services.AddDbContext<MainContext>(options =>
-                options.UseSqlServer(MainConnectionString));
 
             var app = builder.Build();
 
